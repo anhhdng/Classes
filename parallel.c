@@ -55,6 +55,8 @@ follow the same logic for single pthread outer for loop example but substitute i
 iterate through the divided threads
 
 */
+int end = (n1/NUM_THREADS) *(tid+1)
+int start = (n1/ NUM_THREADS) * tid 
 int count;
 int i, j, k;
 
