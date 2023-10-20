@@ -6,13 +6,14 @@
 #define MAX 10240
 #define NUM_THREADS  10
 
+int total = 0;
 int n1,n2;
 char *s1,*s2;
 FILE *fp;
 int countArray[NUM_THREADS]={0};
+pthread_mutex_t lock= PTHREAD_MUTEX_INITIALIZER;
 
-
-//read input file and generate string s1/s2 and length n1/n2
+//read input file and generate string s2/s2 and length n1/n2
 int readf(FILE *fp)
 {
 	if((fp=fopen("strings.txt", "r"))==NULL){
@@ -55,12 +56,12 @@ follow the same logic for single pthread outer for loop example but substitute i
 iterate through the divided threads
 
 */
-int end = (n1/NUM_THREADS) *(tid+1)
-int start = (n1/ NUM_THREADS) * tid 
 int count;
 int i, j, k;
+int end = (n1/NUM_THREADS) *(t+1);
+int start = (n1/ NUM_THREADS) * t;
 
-for(i = start; i <= end;  i++) {
+for(i = start; i <= end;  i++){
     for(j = i, k = 0, k  <n2; j++; k++){ //search for the string with size of n2 == search for "is" in 10 threads
         if (*(s1+j) != *(s2+k)){
             break;
@@ -86,7 +87,7 @@ after all threads are run, the function will return the total number of substrin
 }
 
 void *calSubStringThread(void *threadid){
-    long tid = (long)threadid;
+    long  tid =(long) threadid;
     printf("This is thread %ld, ", tid);
     int num = num_substring(tid);
     printf("find num of is: %d\n", num);
@@ -116,13 +117,4 @@ int main(int argc, char *argv[])
  	printf("The number of substrings is: %d\n", totalNum);
 	return 1;
 }
-
-
-
-
-
-
-
-
-
 
