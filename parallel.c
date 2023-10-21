@@ -69,13 +69,11 @@ for(i = start; i <= end;  i++){
             count++; //count after each thread
         }
         if(count==n2){
-            pthread_mutex_lock(&lock);
-            total++;
-            pthread_mutex_unlock(&lock);
+            count++;
         }
     }
 }
-return total;
+return count;
 
 /*
 2, how to sum up the total number of substring from all threads
@@ -91,6 +89,10 @@ void *calSubStringThread(void *threadid){
     printf("This is thread %ld, ", tid);
     int num = num_substring(tid);
     printf("find num of is: %d\n", num);
+    pthread_mutex_lock(&lock);
+    total += num;
+    pthread_mutex_unlock(&lock);
+    
     pthread_exit(NULL);
 }
 
@@ -117,4 +119,3 @@ int main(int argc, char *argv[])
  	printf("The number of substrings is: %d\n", totalNum);
 	return 1;
 }
-
