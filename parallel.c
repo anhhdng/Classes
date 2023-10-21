@@ -58,9 +58,32 @@ iterate through the divided threads
 */
 int count;
 int i, j, k;
-int end = (n1/NUM_THREADS) *(t+1);
-int start = (n1/ NUM_THREADS) * t;
+//int end = (n1/NUM_THREADS) *(t+1);
+//int start = (n1/ NUM_THREADS) * t;
 
+int parts = n1/NUM_THREADS;
+int start = 0;
+char c[parts+1];
+
+
+for(i = 0; i < n1; i = i+parts){
+    counter = 0;
+    while(counter < chars){
+        c[counter] = s1[i + counter];
+        counter++;
+    }
+    c[counter] = '\0';
+}
+
+int res = strcmp(c[t], s2){
+        if(res==0){
+            count++;
+        } else {
+            break;
+        }
+    }
+
+/*
 for(i = start; i <= end;  i++){
     count  = 0;
     for(j = i, k = 0, k  <n2; j++; k++){ //search for the string with size of n2 == search for "is" in 10 threads
@@ -73,7 +96,7 @@ for(i = start; i <= end;  i++){
             count++;
         }
     }
-}
+}*/
 return count;
 
 /*
