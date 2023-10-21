@@ -64,18 +64,18 @@ int i, j, k;
 int parts = n1/NUM_THREADS;
 int start = 0;
 char c[parts+1];
-
+int counter;
 
 for(i = 0; i < n1; i = i+parts){
     counter = 0;
-    while(counter < chars){
+    while(counter < parts){
         c[counter] = s1[i + counter];
         counter++;
     }
     c[counter] = '\0';
 }
 
-int res = strcmp(c[t], s2){
+if res = strcmp(c[t], s2){
         if(res==0){
             count++;
         } else {
@@ -114,7 +114,7 @@ void *calSubStringThread(void *threadid){
     int num = num_substring(tid);
     printf("find num of is: %d\n", num);
     pthread_mutex_lock(&lock);
-    total += num;
+    totalNum += num;
     pthread_mutex_unlock(&lock);
     
     pthread_exit(NULL);
